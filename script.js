@@ -1,13 +1,8 @@
-const quantitySelect = document.getElementById("quantity-select");
-const quantityInput = document.getElementById("quantity-input");
 const priceSpan = document.getElementById("price");
-const offerMsg = document.getElementById("offer-msg");
-const quantityDisplay = document.getElementById("quantity-display");
 const addToCartBtn = document.getElementById("add-to-cart");
 const cartTotal = document.getElementById("cart-total");
 const cartActions = document.getElementById("cart-actions");
-const cartQuantityInput = document.getElementById("cart-quantity");
-const updateCartBtn = document.getElementById("update-cart");
+const cartQuantitySpan = document.getElementById("cart-quantity");
 const removeCartBtn = document.getElementById("remove-cart");
 const checkoutBtn = document.getElementById("checkout");
 const checkoutForm = document.getElementById("checkout-form");
@@ -17,64 +12,39 @@ const summaryText = document.getElementById("summary");
 
 const basePrice = 100;
 let currentQuantity = 1;
-let currentTotal = 100;
-let cartValue = 0;
+let currentTotal = basePrice;
 
-function updatePrice(quantity) {
-  currentQuantity = quantity;
+function calculatePrice(quantity) {
   let totalPrice = basePrice * quantity;
-  let message = "";
-
-  if (quantity >= 5) {
-    totalPrice *= 0.8;  
-    message = "🔥🔥 لقد حصلت على تخفيض 20%!";
-  } else if (quantity >= 3) {
-    totalPrice *= 0.9; 
-    message = "🔥 لقد حصلت على تخفيض 10%!";
+  if (quantity === 2) {
+    totalPrice = 180;
+  } else if (quantity === 3) {
+    totalPrice = 270;
   }
-
-  currentTotal = totalPrice;
   priceSpan.textContent = totalPrice.toFixed(2);
-  offerMsg.textContent = message;
-  quantityDisplay.textContent = `الكمية المطلوبة: ${quantity}`;
+  currentTotal = totalPrice;
+  currentQuantity = quantity;
 }
 
-quantitySelect.addEventListener("change", () => {
-  const quantity = parseInt(quantitySelect.value);
-  quantityInput.value = "";
-  updatePrice(quantity);
-});
+// Initial price
+calculatePrice(1);
 
-quantityInput.addEventListener("input", () => {
-  const quantity = parseInt(quantityInput.value);
-  if (!isNaN(quantity) && quantity > 0) {
-    quantitySelect.value = "";
-    updatePrice(quantity);
-  } else {
-    updatePrice(1);
-  }
+document.querySelectorAll('input[name="quantity"]').forEach(radio => {
+  radio.addEventListener("change", () => {
+    const q = parseInt(radio.value);
+    calculatePrice(q);
+  });
 });
 
 addToCartBtn.addEventListener("click", () => {
-  cartValue = currentTotal;
-  cartTotal.textContent = cartValue.toFixed(2);
-  cartQuantityInput.value = currentQuantity;
+  cartTotal.textContent = currentTotal.toFixed(2);
+  cartQuantitySpan.textContent = currentQuantity;
   cartActions.style.display = "block";
   checkoutForm.style.display = "none";
   orderSummary.style.display = "none";
 });
 
-updateCartBtn.addEventListener("click", () => {
-  const quantity = parseInt(cartQuantityInput.value);
-  if (!isNaN(quantity) && quantity > 0) {
-    updatePrice(quantity);
-    cartValue = currentTotal;
-    cartTotal.textContent = cartValue.toFixed(2);
-  }
-});
-
 removeCartBtn.addEventListener("click", () => {
-  cartValue = 0;
   cartTotal.textContent = "0";
   cartActions.style.display = "none";
   checkoutForm.style.display = "none";
@@ -106,5 +76,3 @@ confirmOrderBtn.addEventListener("click", () => {
     alert("يرجى تعبئة جميع الحقول!");
   }
 });
-
-updatePrice(1);
