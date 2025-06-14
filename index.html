@@ -1,41 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>متجر المنتج الواحد</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header>
+    <div class="logo">🛍️ متجري</div>
+    <div class="cart">السلة: <span id="cart-total">0</span> دج</div>
+  </header>
 
-    <h1>Place Your Order</h1>
+  <main>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x300?text=صورة+المنتج" alt="صورة المنتج">
+      <h2>اسم المنتج المميز</h2>
 
-    <div id="notification">
-    Success! Your order has been placed.
+      <div class="price-section">
+        <p>السعر للوحدة: 100 دج</p>
+        <p id="quantity-display">الكمية المطلوبة: 1</p>
+        <p class="price">السعر الإجمالي: <span id="price">100</span> دج</p>
+      </div>
+
+      <div class="quantity-options">
+        <label for="quantity-select">اختر الكمية:</label>
+        <select id="quantity-select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3 (تخفيض!)</option>
+          <option value="4">4 (تخفيض!)</option>
+          <option value="5">5 (تخفيض أكبر!)</option>
+          <option value="5">6 (تخفيض أكبر!)</option>
+          <option value="5">7 (تخفيض أكبر!)</option>
+          <option value="5">8 (تخفيض أكبر!)</option>
+          <option value="5">9 (تخفيض أكبر!)</option>
+          <option value="5">10 (تخفيض أكبر!)</option>
+        </select>
+
+        <label for="quantity-input">أو أدخل الكمية:</label>
+        <input type="number" id="quantity-input" min="1" placeholder="اكتب الكمية هنا">
+      </div>
+
+      <p class="offer" id="offer-msg"></p>
+      <button id="add-to-cart">أضف إلى السلة</button>
+
+      <div id="cart-actions" style="display: none;">
+        <p>الكمية في السلة: <input type="number" id="cart-quantity" min="1"></p>
+        <button id="update-cart">تحديث الكمية</button>
+        <button id="remove-cart">حذف من السلة</button>
+        <button id="checkout">شراء</button>
+      </div>
+
+      <div id="checkout-form" style="display: none;">
+        <h3>تأكيد الشراء</h3>
+        <input type="text" id="name" placeholder="الاسم" required>
+        <input type="text" id="surname" placeholder="اللقب" required>
+        <input type="text" id="address" placeholder="العنوان" required>
+        <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+        <button id="confirm-order">تأكيد</button>
+      </div>
+
+      <div id="order-summary" style="display: none;">
+        <h3>✅ تم الشراء بنجاح</h3>
+        <p id="summary"></p>
+      </div>
     </div>
+  </main>
 
-    <form id="orderForm">
-    <label for="name">Name</label>
-    <input id="name" name="name" type="text" required>
+  <footer>
+    &copy; 2025 متجري - جميع الحقوق محفوظة
+  </footer>
 
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" required>
-
-    <label>Quantity</label>
-    <input id="quantity1" name="quantity" type="radio" value="1" required> 1
-    <input id="quantity2" name="quantity" type="radio" value="2"> 2
-    <input id="quantity3" name="quantity" type="radio" value="3"> 3
-
-    <label for="address">Shipping Address</label>
-    <textarea id="address" name="address" rows="4" required></textarea>
-
-    <label for="comments">Comments/Special instructions</label>
-    <textarea id="comments" name="comments" rows="4"></textarea>
-
-    <button type="submit">Submit Order</button>
-    </form>
-
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
