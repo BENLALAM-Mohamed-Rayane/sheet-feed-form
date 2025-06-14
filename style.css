@@ -13,7 +13,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 header .logo {
@@ -50,17 +49,11 @@ main {
   border-radius: 12px;
   max-width: 100%;
   margin-bottom: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-card h2 {
   color: #2c3e50;
   margin-bottom: 10px;
-}
-
-.price-section p {
-  margin: 6px 0;
-  font-size: 1.1em;
 }
 
 .price {
@@ -76,27 +69,31 @@ main {
 
 .quantity-options label {
   display: block;
-  margin: 10px 0 4px;
+  margin: 8px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.old-price {
+  color: red;
+  text-decoration: line-through;
+}
+
+.new-price {
+  color: #27ae60;
   font-weight: bold;
 }
 
-select, input[type="number"] {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 1em;
+input[type="text"], input[type="tel"] {
+  padding: 8px 10px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.offer {
-  margin-top: 15px;
-  color: #d35400;
-  font-weight: bold;
-}
-
 button {
-  margin-top: 12px;
+  margin-top: 8px;
   padding: 12px 25px;
   background: #27ae60;
   color: #fff;
@@ -104,34 +101,17 @@ button {
   border-radius: 10px;
   font-size: 1.1em;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
 button:hover {
   background: #219150;
 }
 
-#cart-actions {
+#cart-actions, #checkout-form, #order-summary {
   margin-top: 20px;
   background: #ecf0f1;
   padding: 15px;
   border-radius: 10px;
-}
-
-#checkout-form, #order-summary {
-  margin-top: 20px;
-  background: #ecf0f1;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: right;
-}
-
-#checkout-form input {
-  padding: 8px 10px;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  width: 100%;
-  margin-bottom: 10px;
 }
 
 footer {
@@ -140,16 +120,4 @@ footer {
   text-align: center;
   padding: 10px 0;
   margin-top: 30px;
-}
-
-/* Responsive */
-@media (max-width: 500px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .product-card {
-    padding: 20px 15px;
-  }
 }
