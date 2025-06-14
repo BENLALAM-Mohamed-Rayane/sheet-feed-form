@@ -18,36 +18,31 @@
       <h2>اسم المنتج المميز</h2>
 
       <div class="price-section">
-        <p>السعر للوحدة: 100 دج</p>
-        <p id="quantity-display">الكمية المطلوبة: 1</p>
         <p class="price">السعر الإجمالي: <span id="price">100</span> دج</p>
       </div>
 
       <div class="quantity-options">
-        <label for="quantity-select">اختر الكمية:</label>
-        <select id="quantity-select">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3 (تخفيض!)</option>
-          <option value="4">4 (تخفيض!)</option>
-          <option value="5">5 (تخفيض أكبر!)</option>
-          <option value="5">6 (تخفيض أكبر!)</option>
-          <option value="5">7 (تخفيض أكبر!)</option>
-          <option value="5">8 (تخفيض أكبر!)</option>
-          <option value="5">9 (تخفيض أكبر!)</option>
-          <option value="5">10 (تخفيض أكبر!)</option>
-        </select>
+        <p>اختر الكمية:</p>
+        <label>
+          <input type="radio" name="quantity" value="1" checked>
+          1 (100 دج)
+        </label><br>
 
-        <label for="quantity-input">أو أدخل الكمية:</label>
-        <input type="number" id="quantity-input" min="1" placeholder="اكتب الكمية هنا">
+        <label>
+          <input type="radio" name="quantity" value="2">
+          2 (<span class="old-price">200 دج</span> <span class="new-price">180 دج</span>)
+        </label><br>
+
+        <label>
+          <input type="radio" name="quantity" value="3">
+          3 (<span class="old-price">300 دج</span> <span class="new-price">270 دج</span>)
+        </label>
       </div>
 
-      <p class="offer" id="offer-msg"></p>
       <button id="add-to-cart">أضف إلى السلة</button>
 
       <div id="cart-actions" style="display: none;">
-        <p>الكمية في السلة: <input type="number" id="cart-quantity" min="1"></p>
-        <button id="update-cart">تحديث الكمية</button>
+        <p>الكمية في السلة: <span id="cart-quantity"></span></p>
         <button id="remove-cart">حذف من السلة</button>
         <button id="checkout">شراء</button>
       </div>
@@ -75,4 +70,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
