@@ -1,74 +1,103 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>متجر المنتج الواحد</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="logo">🛍️ متجري</div>
-    <div class="cart">السلة: <span id="cart-total">0</span> دج</div>
-  </header>
+    
+<div id="top">
+    
+    <h1> Easy Shop</h1>
+    <h2>BUZZ<span>B</span>GONE</h2>
+    <p>مصيدة البعوض الكهربائية</p>
+    
+</div>
+<div id="order">
+    <h2>اطلب الآن</h2>
+    <h3>التوصيل إلى جميع البلديات</h3>
+</div>
+     
 
-  <main>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x300?text=صورة+المنتج" alt="صورة المنتج">
-      <h2>اسم المنتج المميز</h2>
+    <div id="input_form">
+       
+        <input type="text" name="name" placeholder="الاسم">
+        <input type="text" name="suename" placeholder="اللقب">
+        <input type="text" name="number" placeholder="رقم الهاتف">
+        <select id="wilaya" name="wilaya" required></select>
+        <select id="baladiya" name="baladiya" required></select>
+        <div id="offers">
+            <button class="offer">قطعة<br><span class="old_price">2000دج</span><br>1890دج</button>
+            <button class="offer">قطعتان<br><span class="old_price">3780دج</span><br>3500دج</button>
 
-      <div class="price-section">
-        <p class="price">السعر الإجمالي: <span id="price">100</span> دج</p>
-      </div>
+            <div class="more">
+                <button class="offer">  3 قطع او اكثر <br><span class="old_price">5250دج</span><br>5100دج</button>
+                <div class="counter">
+                
+                    <button onclick="decrement()">−</button>
+                    <span id="value">3</span>
+                    <button onclick="increment()">+</button>
+                </div>
+            </div>
+            
+            
 
-      <div class="quantity-options">
-        <p>اختر الكمية:</p>
-        <label>
-          <input type="radio" name="quantity" value="1" checked>
-          1 (100 دج)
-        </label><br>
+        </div>
+        
+        
 
-        <label>
-          <input type="radio" name="quantity" value="2">
-          2 (<span class="old-price">200 دج</span> <span class="new-price">180 دج</span>)
-        </label><br>
+    <p>المجموع: <span id="total">0</span> دج</p>
+    
+    <button class="button">ارسال الطلب</button>
+        </div>
+        
+     <div id="info"><div class="icons">
+            <img src="pics_icons/payment.png" class="icon">
+            <p>الدفع عند<br> الاستلام</p>
+        </div>
+        
+        <div class="icons" >
+            <img src="pics_icons/deliver.png" class="icon">
+            <p>توصيل<br> 58 ولاية</p>
+        </div>
+        
+        <div class="icons">
+            <img src="pics_icons/handshake.png" class="icon">
+            <p> ارجاع خلال<br> 24 ساعة</p>
+        </div>
+        
+     </div>
+     
+     <div class="description">
+<h3>الوصف</h3>
+     <ul>
+  <li>ودع الحشرات المزعجة إلى الأبد آلة صاعقة ممتازة لقتل البعوض، الذباب والحشرات</li>
+  <li>قابلة للشحن عن طريق USB مما يجعلها قابلة للإستعمال في أي مكان : المنزل، المكتب, الجامعة، و حتى أثناء السفر.</li>
+  <li>آمنة 100% على الاطفال و الحيوانات الأليفة، خالية من المواد الكميائية أو الإشعاعات المضرة</li>
+  <li>تشغيل صامت تماما و بدون رائحة، إستمتع بنوم هادئ بدون أي إزعاج.</li>
+  <li>قابلة للتعليق في أي مكان مثل الأبواب اللمبات.</li>
+  <li>تصميم مقاوم للماء، إستخدمها في أي بيئة بكل راحة.</li>
+  <li>مصباح UV ذكي يجذب الناموس بكفاءة عالية دون أى ضرر ل الإنسان.</li>
+</ul>
+     </div>
+     <div class="demon1">
+        <img src="pics_icons/demons1.jpg" class="demons">
+        <img src="pics_icons/demons2.jpg" class="demons">
+     </div>
+     <div class="demon2">
+        <img src="pics_icons/demons3.webp" class="demons">
+        <img src="pics_icons/dmeons4.jpg" class="demons">
+     </div>
 
-        <label>
-          <input type="radio" name="quantity" value="3">
-          3 (<span class="old-price">300 دج</span> <span class="new-price">270 دج</span>)
-        </label>
-      </div>
+     <div class="contact">
+        <h2>Easy Shop</h2>
+        <h3>namoushop@gmail.com</h3>
+        <img src="pics_icons/instagram.png"></img>
+        <img src="pics_icons/facebook.png"></img>
+     </div>
 
-      <button id="add-to-cart">أضف إلى السلة</button>
-
-      <div id="cart-actions" style="display: none;">
-        <p>الكمية في السلة: <span id="cart-quantity"></span></p>
-        <button id="remove-cart">حذف من السلة</button>
-        <button id="checkout">شراء</button>
-      </div>
-
-      <div id="checkout-form" style="display: none;">
-        <h3>تأكيد الشراء</h3>
-        <input type="text" id="name" placeholder="الاسم" required>
-        <input type="text" id="surname" placeholder="اللقب" required>
-        <input type="text" id="address" placeholder="العنوان" required>
-        <input type="tel" id="phone" placeholder="رقم الهاتف" required>
-        <button id="confirm-order">تأكيد</button>
-      </div>
-
-      <div id="order-summary" style="display: none;">
-        <h3>✅ تم الشراء بنجاح</h3>
-        <p id="summary"></p>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 متجري - جميع الحقوق محفوظة
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
-
-
