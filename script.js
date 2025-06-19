@@ -1,78 +1,100 @@
-const priceSpan = document.getElementById("price");
-const addToCartBtn = document.getElementById("add-to-cart");
-const cartTotal = document.getElementById("cart-total");
-const cartActions = document.getElementById("cart-actions");
-const cartQuantitySpan = document.getElementById("cart-quantity");
-const removeCartBtn = document.getElementById("remove-cart");
-const checkoutBtn = document.getElementById("checkout");
-const checkoutForm = document.getElementById("checkout-form");
-const confirmOrderBtn = document.getElementById("confirm-order");
-const orderSummary = document.getElementById("order-summary");
-const summaryText = document.getElementById("summary");
+const offers = document.querySelectorAll(".offer");
+      const counterDiv = document.querySelector(".counter");
+      const totalSpan = document.getElementById("total");
+      const valueSpan = document.getElementById("value");
+    
+      let selectedOffer = null;
+    
+      let quantity = 3;
+    
+      function updateTotal() {
+        if (selectedOffer === "1") totalSpan.innerText = "1890";
+        else if (selectedOffer === "2") totalSpan.innerText = "3500";
+        else if (selectedOffer === "3") totalSpan.innerText = (1700 * quantity).toString();
+        else totalSpan.innerText = "0";
+      }
+    
+      offers.forEach((offer, index) => {
+        offer.addEventListener("click", () => {
+          offers.forEach(o => o.classList.remove("selected"));
+          offer.classList.add("selected");
+    
+          if (index === 2) {
+            counterDiv.style.display = "flex";
+            selectedOffer = "3";
+          } else {
+            counterDiv.style.display = "none";
+            selectedOffer = (index + 1).toString();
+          }
+    
+          updateTotal();
+        });
+      });
+    
+      function increment() {
+        quantity++;
+        valueSpan.innerText = quantity;
+        updateTotal();
+      }
+    
+      function decrement() {
+        if (quantity > 3) {
+          quantity--;
+          valueSpan.innerText = quantity;
+          updateTotal();
+        }
+      }
+    
+      window.increment = increment;
+      window.decrement = decrement;
+    
+      fetch('algeria_cities.json')
+      .then(response => response.json())
+      .then(data => {
+        const wilayaSelect = document.getElementById("wilaya");
+        const baladiyaSelect = document.getElementById("baladiya");
+    
+        const wilayas = {};
+    
+        data.forEach(entry => {
+          const wilaya = entry.wilaya_name;
+          const commune = entry.commune_name;
+    
+          if (!wilayas[wilaya]) {
+            wilayas[wilaya] = [];
+          }
+    
+          if (!wilayas[wilaya].includes(commune)) {
+            wilayas[wilaya].push(commune);
+          }
+        });
+    
+        for (let wilaya in wilayas) {
+          const option = document.createElement("option");
+          option.value = wilaya;
+          option.innerText = wilaya;
+          wilayaSelect.appendChild(option);
+        }
+    
+        wilayaSelect.addEventListener("change", function () {
+          const selectedWilaya = this.value;
+          const communes = wilayas[selectedWilaya] || [];
+    
+          baladiyaSelect.innerHTML = "";
+    
+          communes.forEach(commune => {
+            const option = document.createElement("option");
+            option.value = commune;
+            option.innerText = commune;
+            baladiyaSelect.appendChild(option);
+          });
+        });
+    
+      })
+      .catch(error => {
+        console.error("Erreur lors du chargement de algeria_cities.json :", error);
+      });
+    
 
-const basePrice = 100;
-let currentQuantity = 1;
-let currentTotal = basePrice;
-
-function calculatePrice(quantity) {
-  let totalPrice = basePrice * quantity;
-  if (quantity === 2) {
-    totalPrice = 180;
-  } else if (quantity === 3) {
-    totalPrice = 270;
-  }
-  priceSpan.textContent = totalPrice.toFixed(2);
-  currentTotal = totalPrice;
-  currentQuantity = quantity;
-}
-
-// Initial price
-calculatePrice(1);
-
-document.querySelectorAll('input[name="quantity"]').forEach(radio => {
-  radio.addEventListener("change", () => {
-    const q = parseInt(radio.value);
-    calculatePrice(q);
-  });
-});
-
-addToCartBtn.addEventListener("click", () => {
-  cartTotal.textContent = currentTotal.toFixed(2);
-  cartQuantitySpan.textContent = currentQuantity;
-  cartActions.style.display = "block";
-  checkoutForm.style.display = "none";
-  orderSummary.style.display = "none";
-});
-
-removeCartBtn.addEventListener("click", () => {
-  cartTotal.textContent = "0";
-  cartActions.style.display = "none";
-  checkoutForm.style.display = "none";
-  orderSummary.style.display = "none";
-});
-
-checkoutBtn.addEventListener("click", () => {
-  checkoutForm.style.display = "block";
-  orderSummary.style.display = "none";
-});
-
-confirmOrderBtn.addEventListener("click", () => {
-  const name = document.getElementById("name").value.trim();
-  const surname = document.getElementById("surname").value.trim();
-  const address = document.getElementById("address").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-
-  if (name && surname && address && phone) {
-    summaryText.innerHTML = `
-      شكرا ${name} ${surname}! <br>
-      العنوان: ${address} <br>
-      رقم الهاتف: ${phone} <br>
-      الكمية: ${currentQuantity} <br>
-      السعر النهائي: ${currentTotal.toFixed(2)} دج
-    `;
-    orderSummary.style.display = "block";
-    checkoutForm.style.display = "none";
-  } else {
-    alert("يرجى تعبئة جميع الحقول!");
-  }
-});
+    
+      counterDiv.style.display = "none";
