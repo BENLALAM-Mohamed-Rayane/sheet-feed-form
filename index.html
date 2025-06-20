@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div id="notification-bar">تم إرسال الطلب بنجاح!</div>
+
     
 <div id="top">
     
@@ -22,24 +25,24 @@
 </div>
      
 
-    <div id="input_form">
+    <form id="input_form">
        
-        <input type="text" name="name" placeholder="الاسم">
-        <input type="text" name="suename" placeholder="اللقب">
-        <input type="text" name="number" placeholder="رقم الهاتف">
+        <input type="text" name="nom" placeholder="الاسم">
+        <input type="text" name="prenom" placeholder="اللقب">
+        <input type="text" name="numero" placeholder="رقم الهاتف">
         <select id="wilaya" name="wilaya" required></select>
         <select id="baladiya" name="baladiya" required></select>
         <div id="offers">
-            <button class="offer">قطعة<br><span class="old_price">2000دج</span><br>1890دج</button>
-            <button class="offer">قطعتان<br><span class="old_price">3780دج</span><br>3500دج</button>
+            <button class="offer" type="button">قطعة<br><span class="old_price">2000دج</span><br>1890دج</button>
+            <button class="offer" type="button">قطعتان<br><span class="old_price">3780دج</span><br>3500دج</button>
 
             <div class="more">
-                <button class="offer">  3 قطع او اكثر <br><span class="old_price">5250دج</span><br>5100دج</button>
+                <button class="offer" type="button">  3 قطع او اكثر <br><span class="old_price">5250دج</span><br>5100دج</button>
                 <div class="counter">
                 
-                    <button onclick="decrement()">−</button>
+                    <button onclick="decrement()" type="button">−</button>
                     <span id="value">3</span>
-                    <button onclick="increment()">+</button>
+                    <button onclick="increment()" type="button">+</button>
                 </div>
             </div>
             
@@ -51,8 +54,8 @@
 
     <p>المجموع: <span id="total">0</span> دج</p>
     
-    <button class="button">ارسال الطلب</button>
-        </div>
+    <button class="button" type="submit">ارسال الطلب</button>
+        </form>
         
      <div id="info"><div class="icons">
             <img src="pics_icons/payment.png" class="icon">

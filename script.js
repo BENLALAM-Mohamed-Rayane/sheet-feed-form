@@ -98,3 +98,72 @@ const offers = document.querySelectorAll(".offer");
 
     
       counterDiv.style.display = "none";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//request
+
+document.getElementById("input_form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    var form = e.target;
+    var formData = new FormData(form);
+    formData.append("quantité", selectedOffer === "3" ? quantity : selectedOffer);
+
+    const submitButton = form.querySelector("button[type='submit']");
+    const originalText = submitButton.innerHTML;
+
+    // Show loading state
+    submitButton.disabled = true;
+    submitButton.innerHTML = "جاري الإرسال...";
+
+    fetch("https://script.google.com/macros/s/AKfycbwYQIkhHTURquUopfc6KvSYBCVvS4t1982UBYRsCVt3XU0MjtOOa0wxjkevsy_Z8vSf4A/exec", {
+        method: "POST",
+        body: formData
+    })
+    .then(function(response) {
+        return response.text();
+    })
+    .then(function(data) {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+
+        // Show the top notification bar
+        const notification = document.getElementById("notification-bar");
+        notification.style.top = "0";
+
+        // Hide it after 3 seconds
+        setTimeout(() => {
+            notification.style.top = "-60px";
+        }, 3000);
+
+        form.reset();
+    })
+    .catch(function(error) {
+        console.error(error);
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalText;
+        alert("حدث خطأ أثناء إرسال الطلب.");
+    });
+});
