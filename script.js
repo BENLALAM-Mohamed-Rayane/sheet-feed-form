@@ -167,3 +167,22 @@ document.getElementById("input_form").addEventListener("submit", function(e) {
         alert("حدث خطأ أثناء إرسال الطلب.");
     });
 });
+
+
+
+// function doPost(e) {
+//   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet1");
+
+//   var row = [
+//     e.parameter.name,
+//     e.parameter.email,
+//     e.parameter.quantity,
+//     e.parameter.address,
+//     e.parameter.comments
+//   ];
+
+//   sheet.appendRow(row);
+  
+//   return ContentService.createTextOutput("Success");
+
+// }
